@@ -50,7 +50,7 @@ func serialworker(sig chan string) {
 		log.Fatal(err)
 	}
 
-	n, err := s.Write([]byte("10;RFDEBUG=ON;\n"))
+	n, err := s.Write([]byte("10;RFBRIDGE=ON;\r\n"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -127,7 +127,7 @@ func listen(uri *url.URL, topic string) {
 
 // push_mqtt push messages to queues
 func pushMqtt(client mqtt.Client, ps *list.List) {
-	doLog("Buffer contains %d elements\n", ps.Len())
+	//doLog("Buffer contains %d elements\n", ps.Len())
 	for ps.Len() > 0 {
 		// Get First In, and remove it
 		e := ps.Front()
@@ -135,7 +135,7 @@ func pushMqtt(client mqtt.Client, ps *list.List) {
 		if token := client.Publish("signal_raw", 0, false, e.Value); token.Wait() && token.Error() != nil {
 			fmt.Println(token.Error())
 		}
-		doLog("Publish '%s' \n", e.Value)
+		//doLog("Publish '%s' \n", e.Value)
 
 		ps.Remove(e)
 	}
