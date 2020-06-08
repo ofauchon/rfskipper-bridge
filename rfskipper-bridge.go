@@ -75,7 +75,7 @@ func serialworker(sig chan string) {
 					break
 				}
 				rs := r.FindSubmatch(buffer)
-				pulses := "{id:" + string(rs[1]) + ",count:" + string(rs[3]) + ",pulses:[" + string(rs[4]) + "]}"
+				pulses := "{\"id\":" + string(rs[1]) + ",\"count\":" + string(rs[3]) + ",\"pulses\":[" + string(rs[4]) + "]}"
 				doLog("Found Pulse [%s]\n", pulses)
 				buffer = buffer[m[1]:]
 
