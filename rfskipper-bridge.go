@@ -79,9 +79,15 @@ func serialworker(sig chan string) {
 				doLog("Found Pulse [%s]\n", pulses)
 				buffer = buffer[m[1]:]
 
-				// Send signal
+				// Hope that help.
+				n, err = s.Write([]byte("10;PING;\n"))
+				if err != nil {
+					log.Fatal(err)
+				}
 
+				// Send signal
 				sig <- pulses
+
 			}
 
 		}
