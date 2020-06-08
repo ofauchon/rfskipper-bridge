@@ -61,7 +61,7 @@ func serialworker(sig chan string) {
 		20;188;DEBUG;Pulses=301;Pulses(uSec)=210,210,210,210,...,200,220,200,210;';
 	*/
 	// <PAYLOAD:46575645523A303130343B434150413A303030343B4241544C45563A323636313B4157414B455F5345433A303B4D41494E5F4C4F4F503A303B4552524F523A303031323B4800; SMAC:00:00:00:00:00:00:00:25;LQI:120;RSSI:61>
-	r, _ := regexp.Compile(`(\d+);(\d+);DEBUG;Pulses=(\d+);Pulses\(uSec\)=([^;]+);`)
+	r, _ := regexp.Compile(`(\d+);(\w+);DEBUG;Pulses=(\d+);Pulses\(uSec\)=([^;]+);`)
 	doLog("Start reading UART, forever\n")
 	for {
 		n, _ = s.Read(buf)
